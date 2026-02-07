@@ -12,9 +12,9 @@ const ProjectCard = ({project, setProjects, deleteProject}: ProjectCardProps) =>
   return (
     <div>
         <Link href={`/dashboard/projects/${project.id}`}>
-            <p>{project.name}</p>
-            <button onClick={() => setProjects(deleteProject(project.id))}>Delete Project</button>
+          <p>{project.name}</p>
         </Link>
+          <button onClick={() => setProjects(deleteProject(project.id))}>Delete Project</button>
     </div>
   )
 }
