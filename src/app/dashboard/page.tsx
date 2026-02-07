@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/navigation";
 import { getStorageItem } from "../../utils/storage"
 import { createProject, listProjects, deleteProject } from "../../services/project.service"
+import { deleteTasksByProject } from "../../services/task.service"
 import { Project } from "../../types/Project"
 import ProjectCard from "./ProjectCard"
 import Stats from './Stats';
@@ -23,6 +24,13 @@ const page = () => {
     setProjects(listProjects());
   }, []);
 
+  function handleDeleteProject(projectId: string){
+    deleteTasksByProject(projectId)
+    deleteProject(projectId)
+    setProjects(listProjects())
+    console.log(projectId)
+  }
+
   return (
     <div>
       <form onSubmit={e => {
@@ -41,8 +49,7 @@ const page = () => {
         <ProjectCard 
           key={project.id} 
           project={project} 
-          setProjects={setProjects} 
-          deleteProject={deleteProject}
+          handleDeleteProject={handleDeleteProject}
         />
       ))
       }

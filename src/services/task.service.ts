@@ -14,6 +14,13 @@ export function addTask(projectId: string, title: string): Task[]{
     return updatedTasks
 }
 
+export function deleteTasksByProject(projectId: string): Task[]{
+    const tasks = listTasks()
+    const updatedTasks: Task[] = tasks.filter(task => task.projectId !== projectId)
+    setStorageItem("tasks", updatedTasks)
+    return updatedTasks
+}
+
 export function toggleTaskDone(id: string): Task[]{
     let tasks = listTasks()
     const updatedTasks: Task[] = tasks.map(task => {
