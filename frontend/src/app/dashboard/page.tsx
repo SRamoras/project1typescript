@@ -4,9 +4,11 @@ import { useRouter } from "next/navigation";
 import { getStorageItem } from "../../utils/storage"
 import { createProject, listProjects, deleteProject } from "../../services/project.service"
 import { Project } from "../../types/Project"
+import ProjectCard from "./ProjectCard"
+
 const page = () => {
     const router = useRouter();
-    const [name, setName] = useState("")
+    const [name, setName] = useState<string>("")
     const [projects, setProjects] = useState<Project[]>([])
 
     useEffect(() => {
@@ -34,10 +36,12 @@ const page = () => {
 
       {
       projects.map(project => (
-        <div key={project.id}>
-          <p>{project.name}</p>
-          <button onClick={() => setProjects(deleteProject(project.id))}>Delete Project</button>
-        </div>
+        <ProjectCard 
+          key={project.id} 
+          project={project} 
+          setProjects={setProjects} 
+          deleteProject={deleteProject}
+        />
       ))
       }
     </div>
