@@ -1,0 +1,61 @@
+.page {
+  --background: #fafafa;
+  --foreground: #fff;
+
+  --text-primary: #000;
+  --text-secondary: #666;
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+  --button-secondary-border: #ebebeb;
+
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f0efef;
+  color: #000;
+}
+
+.projectsGrid {
+  width: 100%;
+  max-width: 1000px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+
+  margin-top: 32px;
+}
+
+.formAddProjects{
+    display: flex;
+    width: 70%;
+    gap: 10px;
+}
+
+.formAddProjects button{
+  width: 40%;
+  padding: 12px;
+  border: #000 solid 1px;
+  border-radius: 8px;
+}
+.header {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.searchContainer{
+  display: flex;
+  width: 50%;
+}
+
+.nothingP{
+  margin-top: 40px;
+}
