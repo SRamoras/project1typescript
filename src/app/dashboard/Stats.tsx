@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { listProjects } from "../../services/project.service"
 import { listTasks } from '../../services/task.service'
-
+import "./Stats.css"
 const Stats = () => {
 
     const [totalProjects, setTotalProjects] = useState(0)
@@ -21,11 +21,11 @@ const Stats = () => {
     }, [])
 
   return (
-    <div>
-        <p>Total de projetos: {totalProjects}</p>
-        <p>Total de tarefas: {totalTasks}</p>
-        <p>Tarefas concluídas: {completedTasks}</p>
-        <p>Tarefas pendentes: {pendingTasks}</p>
+    <div className="statsContainer">
+        <p className='statsCard'>Total de projetos: {totalProjects}</p>
+        <p className='statsCard'>Total de tarefas: {totalTasks}</p>
+        <p className='statsCard'>Tarefas concluídas: {completedTasks} ✅</p>
+        <p className='statsCard'>Tarefas pendentes: {pendingTasks} ⌛</p>
     </div>
   )
 }
