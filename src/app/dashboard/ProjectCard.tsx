@@ -23,7 +23,9 @@ const ProjectCard = ({project, handleDeleteProject}: ProjectCardProps) => {
           handleDeleteProject(project.id);
         }}
       >
-        ×
+        <span className="material-symbols-outlined">
+          close
+        </span>
       </button>
     </div>
   )

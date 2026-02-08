@@ -8,12 +8,15 @@ import styles from "./page.module.css"
 import {listProjects} from "../../../../services/project.service"
 import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
+
 const page = () => {
   const { id } = useParams<{ id: string }>();
   const [tasks, setTasks] = useState<Task[]>([])
   const [title, setTitle] = useState("")
   const [projectName, setProjectName] = useState("")
   const projects = listProjects()
+  const filteredTasks = tasks.filter(task => task.projectId === id)
+  
   useEffect(() => {
     setTasks(listTasks())
     
@@ -42,8 +45,8 @@ const page = () => {
       <div>
 
       </div>
-      {
-        tasks.filter(task => task.projectId === id).map((task, index) => (
+      {filteredTasks.length !== 0
+        ? filteredTasks.map((task, index) => (
           <TaskCard
             key={task.id}
             task={task}
@@ -51,6 +54,8 @@ const page = () => {
             index={index}
           />
         ))
+        :
+        <p>There is no Tasks yet...</p>
       }
     </div>
   )
