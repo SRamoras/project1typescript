@@ -1,0 +1,35 @@
+.page {
+  --background: #fafafa;
+  --foreground: #fff;
+
+  --text-primary: #000;
+  --text-secondary: #666;
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+  --button-secondary-border: #ebebeb;
+
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f0efef;
+  color: #000;
+}
+.formAddProjects{
+    display: flex;
+    width: 70%;
+    gap: 10px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.formAddProjects button{
+  width: 40%;
+  padding: 12px;
+  border: #000 solid 1px;
+  border-radius: 8px;
+}

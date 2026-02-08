@@ -4,13 +4,23 @@ import {listTasks, addTask, toggleTaskDone} from "../../../../services/task.serv
 import { useParams } from "next/navigation";
 import {Task} from "../../../../types/Task"
 import TaskCard from "./TaskCard"
+import styles from "./page.module.css"
+import {listProjects} from "../../../../services/project.service"
+import Input from "../../../../components/Input";
+import Button from "../../../../components/Button";
 const page = () => {
   const { id } = useParams<{ id: string }>();
   const [tasks, setTasks] = useState<Task[]>([])
   const [title, setTitle] = useState("")
-  
+  const [projectName, setProjectName] = useState("")
+  const projects = listProjects()
   useEffect(() => {
     setTasks(listTasks())
+    
+    const rightProject = projects.find(project => project.id === id)
+    if(rightProject){
+      setProjectName(rightProject.name)
+    }
   }, [])
 
   function setDone(taskID: string): void{
@@ -19,22 +29,26 @@ const page = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={e => {
+    <div className={styles.page}>
+      <h1>Project: {projectName}</h1>
+      <form className={styles.formAddProjects} onSubmit={e => {
         e.preventDefault()
         addTask(id, title)
         setTasks(listTasks())
       }}>
-        <label htmlFor="title">title</label>
-        <input id="title" type="title" value={title} onChange={e => setTitle(e.target.value)} />
-        <input type='submit' value="Add Task"/>
+          <Input id="title" placeholder="Enter task title" Icon='assignment' type="title" value={title} onChange={e => setTitle(e.target.value)} />
+          <Button type='submit' value="Add Task"/>
       </form>
+      <div>
+
+      </div>
       {
-        tasks.filter(task => task.projectId === id).map(task => (
+        tasks.filter(task => task.projectId === id).map((task, index) => (
           <TaskCard
             key={task.id}
             task={task}
             setDone={setDone}
+            index={index}
           />
         ))
       }
